@@ -30,6 +30,21 @@ app = FastAPI(
 )
 
 # ------------------------------------------------------------------------------
+# ROOT Endpoint (FIX)
+# ------------------------------------------------------------------------------
+@app.get("/", tags=["Root"])
+def read_root():
+    """
+    Returns a simple welcome message and directs users to the documentation.
+    This fixes the 404 Not Found error when visiting the base URL.
+    """
+    return {
+        "message": "Welcome to the Calculations API!",
+        "docs": "Visit /docs for the interactive API documentation.",
+        "status": "online"
+    }
+
+# ------------------------------------------------------------------------------
 # Health Endpoint
 # ------------------------------------------------------------------------------
 @app.get("/health", tags=["health"])
